@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>word count</title>
+</head>
+<body>
+    <h1>Please check console to view the result</h1>
+    <p>press ctrl+shift+i or press F12 Function key</p>
+    
+</body>
+</html>
+<script>
+    /*let text = "javascript is easy and javascript is powerful";
+
+let words = text.toLowerCase().split(" ");
+
+let count = {};
+
+for (let word of words) {
+
+    if (count[word]) {
+        count[word]++;
+    } else {
+        count[word] = 1;
+    }
+}
+
+// Sort words based on frequency
+let sortedwords = Object.entries(count)
+    .sort((a, b) => b[1] - a[1]);
+
+// Print the first three most common words
+console.log("Top 3 most common words:");
+
+for (let i = 0; i < 3; i++) {
+    console.log(sortedwords[i][0] + " : " + sortedwords[i][1]);
+}*/
+// This script will run when the page is loaded
+window.onload = () => {
+    let result = countWords();
+    console.log(result);
+};
+
+function countWords() {
+    // The text variable contains the long string of words
+    let text = "JavaScript is easy and JavaScript is powerful.";
+
+    // Remove periods and commas and convert to lowercase
+    text = text.replace(/[.,]/g, "");
+    text = text.toLowerCase();
+
+    console.log(text);
+
+    // Convert the text into an array of words
+    const wordArray = text.split(/\s+/);
+
+    console.log(wordArray);
+
+    // Count each word
+    const wordCount = {};
+
+    wordArray.forEach((item) => {
+        if (wordCount[item] == null) {
+            wordCount[item] = 1;
+        } else {
+            wordCount[item] += 1;
+        }
+    });
+
+    // Turn object into an array of arrays
+    let myArray = Object.entries(wordCount);
+
+    console.log(myArray);
+
+    // Sort based on frequency (highest first)
+    let bArray = myArray.sort(function (a, b) {
+        return b[1] - a[1];
+    });
+
+    // Return the first three most common words
+    bArray = bArray.slice(0, 3);
+
+    return bArray;
+}
+
+// Don't change this line
+if (typeof module !== "undefined") {
+    module.exports = countWords;
+}
+</script>
